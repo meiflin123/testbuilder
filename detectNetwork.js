@@ -42,75 +42,108 @@ var detectNetwork = function(cardNumber) {
   // The American Express network always starts with a 34 or 37 and is 15 digits long
 
   // Once you've read this, go ahead and try to implement this function, then return to the console.
-  var length = cardNumber.length
+  var length = cardNumber.length;
   
-  if (isAmericanExpress(cardNumber, length)) {return 'American Express'}
-  if (isDinersClub(cardNumber,length)){return 'Diner\'s Club'}
-  if (isMasterCard(cardNumber, length)){return 'MasterCard'}
-  if (isDiscover(cardNumber, length)){return 'Discover'}
-  if (isMaestro(cardNumber, length)){return 'Maestro'}
-  if (isChinaUnionPay(cardNumber, length)) {return 'China UnionPay'}
-  if (isSwitch(cardNumber, length)) {return 'Switch'}
-  if (isVisa(cardNumber, length)){return 'Visa'}
-}
-function isAmericanExpress(cardNumber, length){
-  var prefix2 = getPrefix(cardNumber, 2)
-  if(length === 15 && (prefix2=== '34' || prefix2 === '37')) {return true}
-}
+  if (isAmericanExpress(cardNumber, length)) {
+    return 'American Express';
+  };
+
+  if (isDinersClub(cardNumber,length)) {
+    return 'Diner\'s Club';
+  };
+  if (isMasterCard(cardNumber, length)) {
+    return 'MasterCard';
+  };
+  if (isDiscover(cardNumber, length)) {
+    return 'Discover';
+  };
+  if (isMaestro(cardNumber, length)) {
+    return 'Maestro';
+  };
+  if (isChinaUnionPay(cardNumber, length)) {
+    return 'China UnionPay';
+  };
+  if (isSwitch(cardNumber, length)) {
+    return 'Switch';
+  };
+  if (isVisa(cardNumber, length)) {
+    return 'Visa';
+  };
+};
 
 
-function isDinersClub(cardNumber, length){
-  var prefix2 = getPrefix(cardNumber, 2)
-  if(length === 14 && (prefix2 === '38'|| prefix2 === '39')) {return true}
-}
+
+function isAmericanExpress(cardNumber, length) {
+  var prefix2 = getPrefix(cardNumber, 2);
+  if (length === 15 && (prefix2=== '34' || prefix2 === '37')) {
+    return true;
+  };
+};
 
 
-function isVisa(cardNumber, length){
-  var prefix1 = getPrefix(cardNumber, 1)
-  var first4 = parseInt(getPrefix(cardNumber, 4))
+function isDinersClub(cardNumber, length) {
+  var prefix2 = getPrefix(cardNumber, 2);
+  if(length === 14 && (prefix2 === '38'|| prefix2 === '39')) {
+    return true;
+  };
+};
 
-  if((length === 13 || length === 16 || length === 19) && prefix1 === '4')
-  { return true}
-}
 
-function isMasterCard(cardNumber,length){
-  prefix = parseInt(getPrefix(cardNumber, 2))
-  if (length === 16 && (prefix >= 51 && prefix <=55))
-    {return true}
-}
-function isDiscover(cardNumber, length){
-  var prefix2 = getPrefix(cardNumber, 2)
-  var prefix3 = parseInt(getPrefix(cardNumber, 3))
-  var prefix4 = getPrefix(cardNumber, 4)
-  if ((prefix2 === '65' || prefix4 === '6011' || (prefix3 >= 644 && prefix3 <= 649)) && (length === 16 || length === 19))
-  {return true}
-}
+function isVisa(cardNumber, length) {
+  var prefix1 = getPrefix(cardNumber, 1);
+  var first4 = parseInt(getPrefix(cardNumber, 4));
+
+  if ((length === 13 || length === 16 || length === 19) && prefix1 === '4') {
+    return true;
+  };
+};
+
+function isMasterCard(cardNumber,length) {
+  prefix = parseInt(getPrefix(cardNumber, 2));
+  if (length === 16 && (prefix >= 51 && prefix <=55)){
+    return true;
+  };
+};
+
+
+function isDiscover(cardNumber, length) {
+  var prefix2 = getPrefix(cardNumber, 2);
+  var prefix3 = parseInt(getPrefix(cardNumber, 3));
+  var prefix4 = getPrefix(cardNumber, 4);
+  if ((prefix2 === '65' || prefix4 === '6011' || (prefix3 >= 644 && prefix3 <= 649)) && (length === 16 || length === 19)) {
+    return true;
+  };
+};
+
 function isMaestro(cardNumber, length){
   var prefix4 = getPrefix(cardNumber, 4)
-  if ((length >= 12 && length <= 19) && (prefix4 === '5018' || prefix4 === '5020' || prefix4 === '5038' || prefix4 === '6304'))
-    {return true}
-}
+  if ((length >= 12 && length <= 19) && (prefix4 === '5018' || prefix4 === '5020' || prefix4 === '5038' || prefix4 === '6304')) {
+    return true;
+  };
+};
 
-function isChinaUnionPay(cardNumber, length){
-  var prefix6 = parseInt(getPrefix(cardNumber, 6))
-  var prefix4 = parseInt(getPrefix(cardNumber, 4))
-  var prefix3 = parseInt(getPrefix(cardNumber, 3))
-  if (length >= 16 && length <= 19){
-    if(
-    (prefix6>= 622126 && prefix6 <= 622925) || (prefix4 >= 6282 && prefix4 <= 6288) || (prefix3 >= 624 && prefix3 <= 626))
-{return true}}
-    
-  }
+function isChinaUnionPay(cardNumber, length) {
+  var prefix6 = parseInt(getPrefix(cardNumber, 6));
+  var prefix4 = parseInt(getPrefix(cardNumber, 4));
+  var prefix3 = parseInt(getPrefix(cardNumber, 3));
+  if (length >= 16 && length <= 19) {
+    if ((prefix6>= 622126 && prefix6 <= 622925) || (prefix4 >= 6282 && prefix4 <= 6288) || (prefix3 >= 624 && prefix3 <= 626)) {
+      return true;
+    };
+  };
+};
   
-function isSwitch(cardNumber, length ){
-  var prefix6 = parseInt(getPrefix(cardNumber, 6))
-  var prefix4 = parseInt(getPrefix(cardNumber, 4))
-  if ((prefix6 === 564182 || prefix6 === 633110 || prefix4 === 4903 || prefix4 === 4905 || prefix4 === 4911 || prefix4 === 4936 || prefix4 === 6333 || prefix4 === 6759) && (length === 16 || length === 18 || length === 19)) {return true}
-}
+function isSwitch(cardNumber, length) {
+  var prefix6 = parseInt(getPrefix(cardNumber, 6));
+  var prefix4 = parseInt(getPrefix(cardNumber, 4));
+  if ((prefix6 === 564182 || prefix6 === 633110 || prefix4 === 4903 || prefix4 === 4905 || prefix4 === 4911 || prefix4 === 4936 || prefix4 === 6333 || prefix4 === 6759) && (length === 16 || length === 18 || length === 19)) {
+    return true;
+  };
+};
 
-function getPrefix(cardNumber, numberOfPrefix){
-  return cardNumber.slice(0, numberOfPrefix)
-}
+function getPrefix(cardNumber, numberOfPrefix) {
+  return cardNumber.slice(0, numberOfPrefix);
+};
 /*
 STEP TWO:
 Nice work! Extend your function to support two popular networks, Visa and Mastercard:
